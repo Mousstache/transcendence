@@ -1,0 +1,19 @@
+.navbarre {
+	position: flex;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: black;
+	padding: 10px 20px;
+	z-index: 9999;
+}
+
+.navbarre a {
+	color: white;
+	text-decoration: none;
+	font-family: 'arcade-font', sans-serif;
+}
+

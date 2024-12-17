@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta tags and title -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TRANSVERSALE</title>
+	<base href="/">
+
+	<!-- Stylesheets -->
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="../images/notre_mur.ico">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="../css/waiting.css">
+	<link rel="stylesheet" href="../css/profil.css">
+	<link rel="stylesheet" href="../css/play.css">
+	<link rel="stylesheet" href="../css/validate_code.css" />
+	<link rel="stylesheet" href="../css/friend_list.css">
+	<link rel="stylesheet" href="../css/nav_barre.css">
+	<!-- Added home_chat.css for chat styling -->
+	<link rel="stylesheet" href="../css/home_chat.css">
+
+	<!-- Include any additional CSS needed for styling -->
+	<style>
+		/* Nav bar styles */
+		.navbarre {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: transparent;
+			padding: 10px 20px;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 999;
+		}
+
+		.navbarre .nav-left a {
+			color: black;
+			position: relative;
+			margin-left: 10px;
+			padding: 0;
+			border-radius: 10px;
+			background-color: white;
+			border: 2px solid black;
+			cursor: pointer;
+			outline: none;
+			width: 100px;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.navbarre .nav-right {
+			display: flex;
+			align-items: center;
+		}
+
+		/* Style for the nav buttons */
+		.nav-button {
+			position: relative;
+			margin-left: 10px;
+			padding: 0;
+			background-color: white;
+			border: 2px solid black;
+			border-radius: 50%;
+			cursor: pointer;
+			outline: none;
+			width: 50px;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.nav-button img.nav-icon {
+			width: 30px;
+			height: 30px;
+			image-rendering: pixelated;
+		}
+
+		.nav-button:hover {
+			background-color: #f0f0f0;
+		}
+
+		/* Adjust main content to avoid being hidden behind fixed nav bar */
+		#app {
+			margin-top: 70px;
+		}
+
+		/* Popup Styles (Friend List, Notification) */
+		.popup {
+			display: none;
+			position: fixed;
+			background: rgba(4, 72, 14, 0.8);
+			border: 1px solid #ddd;
+			z-index: 1000;
+			padding: 10px;
+			width: 350px;
+			max-height: 450px;
+			overflow-y: auto;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			top: 70px;
+			right: 20px;
+			border: 3px solid rgb(255, 255, 255);
+			border-radius: 20px;
+		}
+
+		.profile_popup {
+			background: rgba(4, 72, 14, 0.8);
+			position: absolute;
+			border: 1px solid #ddd;
+			z-index: 1000;
+			padding: 10px;
+			width: 33%;
+			max-height: 90%;
+			overflow-y: auto;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			top: 70px;
+			left: 20px;
+			border: 3px solid rgb(255, 255, 255);
+			border-radius: 20px;
+		}
+
+		/* 
+        .popup_notification{
+        } */
+		/* Notification item styling */
+		.notification-item {
+			display: flex;
+			align-items: center;
+			padding: 5px 10px;
+			margin-bottom: 5px;
+			border: 2px solid #ccc;
+			border-radius: 10px;
+		}
+
+		/* Avatar styling */
+		.notification-item .avatar {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+
+		/* Username styling */
+		.notification-item .username {
+			flex-grow: 1;
+			font-weight: bold;
+		}
+
+		/* Icon container */
+		.notification-item .icon-container {
+			display: flex;
+			gap: 10px;
+		}
+
+		/* Icons */
+		.notification-item .icon {
+			cursor: pointer;
+			width: 16px;  /* Smaller size */
+			height: 16px;
+		}
+
+		/* Additional styles for accept and decline icons if needed */
+		/* .accept-icon {
+			/* Add any specific styles for the accept icon */
+		/* } */
+
+		/* .decline-icon { */
+			/* Add any specific styles for the decline icon */
+		/* } */ */
+
+		/* Notification Popup Specific Styles */
+		#notification-popup .popup-content {
+			display: flex;
+			flex-direction: column;
+		}
+
+		#notification-popup h3 {
+			margin-bottom: 10px;
+			text-align: center;
+		}
+
+		/* Friend Search Bar */
+		#friend-search-container {
+			margin-bottom: 10px;
+		}
+
+		#friend-search-bar {
+			display: none;
+		}
+
+		#friend-search-message {
+			color: red;
+		}
+
+		/* Close Button */
+		#close-notification-popup {
+			margin-top: 10px;
+			align-self: center;
+		}
+
+		/* Friend List Styling */
+		.friend-section {
+			margin-bottom: 10px;
+		}
+
+		.friend-section-header {
+			display: flex;
+			font-size: x-small;
+			justify-content: space-between;
+			align-items: center;
+			cursor: pointer;
+			/* background: rgba(4, 72, 14, 0.6); Couleur de fond translucide avec plus de transparence */
+			padding: 5px 10px;
+			width: 300px;
+			/* Limite la largeur à 300px */
+			white-space: nowrap;
+			/* Empêche le texte de passer à la ligne */
+			overflow: hidden;
+			/* Cache le texte qui dépasse la largeur de la boîte */
+			text-overflow: ellipsis;
+			/* Ajoute "..." si le texte est trop long */
+			border-radius: 5px;
+			/* Ajoute un léger arrondi aux coins pour un effet visuel plus doux */
+		}
+
+		.friend-section-header h5 {
+			margin: 0;
+		}
+
+		.toggle-icon {
+			font-size: 20px;
+		}
+
+		.friend-section ul {
+			display: block;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.padoche {
+			padding: 10px;
+		}
+
+		.friend-section.collapsed ul {
+			display: none;
+		}
+
+		.toggle-icon {
+			cursor: pointer;
+		}
+
+		.friend {
+			display: flex;
+			/* align-items: center; */
+			padding: 5px;
+			cursor: pointer;
+		}
+
+		/* .friend:hover {
+            background-color: #f0f0f0;
+        } */
+
+		.friend img.profile-image {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 10px;
+			object-fit: cover;
+		}
+
+		.status-indicator {
+			margin-left: auto;
+			font-size: 16px;
+		}
+
+		/* Unseen Message Indicator Dot */
+		.unseen-message-dot {
+			width: 8px;
+			height: 8px;
+			background-color: red;
+			border-radius: 50%;
+			margin-left: 5px;
+			display: inline-block;
+		}
+
+		/* Chat Area Styling */
+		.message-area .chat-top {
+			background-color: #f8f8f8;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.message-area .chat-top img.profile-image {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 10px;
+			object-fit: cover;
+		}
+
+		.profile-image.online {
+			border: 2px solid green;
+		}
+
+        .profile-image.offline {
+            border: 2px solid red;
+        }
+        /* .bouton-send{
+            background-image: url("images/envoyer.png");
+            width: 20px;
+        } */
+        #close-popup-btn {
+            background-color: #f44336;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .action-btn{
+            display: flex;
+            justify-content: end;
+        }
+		    /* Unread message count badge */
+		.unread-count {
+			background-color: red;
+			color: white;
+			padding: 2px 6px;
+			border-radius: 12px;
+			font-size: 12px;
+			margin-left: 5px;
+		}
+
+		/* Glowing effect for the friend button when there are new messages */
+		#btn-friends.new-message {
+			box-shadow: 0 0 10px red;
+			animation: glow 1s infinite;
+		}
+		#btn-notifications.new-message {
+			box-shadow: 0 0 10px red;
+			animation: glow 1s infinite;
+		}
+
+
+		@keyframes glow {
+			0% {
+				box-shadow: 0 0 5px red;
+			}
+			50% {
+				box-shadow: 0 0 20px red;
+			}
+			100% {
+				box-shadow: 0 0 5px red;
+			}
+		}
+		.bouton-send {
+			background-image: url("../images/envoyer.png");
+			background-size: cover;
+			background-repeat: no-repeat; /* Empêche la répétition de l'image */
+			background-position: center; /* Centre l'image à l'intérieur du bouton */
+			background-color: transparent; /* Supprime la couleur de fond */
+			border: none;
+			padding-right: 10px;
+			width: 40px;
+			height: 50px; 
+			cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+			border-radius: 3px; /* Arrondit les coins du bouton */
+			transition: background-color 0.3s; /* Ajoute une transition pour un effet visuel au survol */
+			margin: 0%;
+		}
+
+		*::-webkit-scrollbar {
+			width: 6px;
+		}
+
+		*::-webkit-scrollbar-thumb {
+			background-color: #ccc;
+			border-radius: 3px;
+		}
+
+		*::-webkit-scrollbar-track {
+			background-color: #f1f1f1;
+		}
+
+		button{
+			width:100%;
+		}
+		.honte{
+			display: none;
+		}
+    </style>
+</head>
+
+<body>
+	<!-- Navigation Bar -->
+	<div id="nav">
+		<nav class="navbarre">
+			<div class="nav-left">
+				<a href="/home/">HOME</a>
+			</div>
+			<div class="nav-right">
+				<!-- Friends Button -->
+				<button id="btn-friends" class="nav-button" aria-label="Friends">
+					<img src="../images/friends.png" alt="Friends Icon" class="nav-icon">
+				</button>
+				<!-- Notification Button -->
+				<!-- <div id="popup" style="display: none;"> -->
+				<button id="btn-notifications" class="notification nav-button" aria-label="Notifications">
+					<img src="../images/notif_icon.png" alt="Notifications Icon" class="nav-icon">
+					<div id="notification-list"></div>
+				</button>
+			</div>
+		</nav>
+	</div>
+
+	<!-- Main application content -->
+	<div id="app">
+		<!-- Main application content will be loaded here -->
+	</div>
+
+	<!-- Friend Requests Area -->
+	<!-- Friend List Popup -->
+	<div id="popup" class="popup">
+		<!-- Friend Search Container -->
+		<div id="friend-search-container">
+			<div class="padoche">
+				<h6>Friend List</h6>
+				<button id="add-friend-button" class="btn btn-success btn-sm">+</button>
+			</div>
+			<div id="friend-search-bar" style="display: none;">
+				<form id="friend-search-form" class="form-inline">
+					<input type="text" id="friend-search-input" placeholder="Enter username..."
+						class="form-control mr-2">
+					<button type="submit" class="btn btn-success btn-sm">Add</button>
+				</form>
+				<div id="friend-search-message" class="mt-2"></div>
+			</div>
+		</div>
+
+		<!-- Friend List -->
+		<div class="honte" id="friend-list"></div>
+		<div class="col-sm-12 contacts">
+			<div class="contact-table-scroll">
+				<!-- Online Friends Section (with toggle) -->
+				<div class="friend-section" id="online-friends-section">
+					<div class="friend-section-header" onclick="toggleFriendSection('online')">
+						<h5>Online Friends</h5>
+						<span id="online-section-toggle" class="toggle-icon">-</span>
+					</div>
+					<ul id="online-friend-list">
+						<!-- Online friends will be populated here -->
+					</ul>
+				</div>
+
+				<!-- Offline Friends Section (always visible, no toggle) -->
+				<div class="friend-section" id="offline-friends-section">
+					<div class="friend-section-header">
+						<h5>Offline Friends</h5>
+					</div>
+					<ul id="offline-friend-list">
+						<!-- Offline friends will be populated here -->
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Notification Popup -->
+	</div>
+	<div id="notification-popup" class="popup">
+		<div class="popup-content">
+			<h2>Notifications</h2>
+			<div id="friend-requests-container"></div>
+			<div id="invit-notification-list"></div>
+			<button id="close-notification-popup" class="btn btn-secondary btn-sm">Close</button>
+		</div>
+	</div>
+
+    <!-- Chat Area -->
+    <div id="chat-area" style="display: none;">
+        <div class="message-area">
+            <div class="chat-top">
+                <!-- Updated profile image with id -->
+                <div class="d-flex align-items-center">
+                    <img id="chat-partner-profile-picture" src="../assets/dp.png" alt="Profile Image" class="profile-image rounded-circle">
+                    <span class="ml-2" id="chatUser">Select a friend to chat</span>
+                </div>
+                <div class="action-btn">
+                    <button id="invite-play" title="Invite to Play"></button>
+                    <button id="block-user" title="Block User"></button>
+                    <button id="close-chat" title="Close Chat"></button>
+                </div>
+            </div>
+            <div class="message-table-scroll">
+                <!-- Messages will be loaded here dynamically -->
+                <div id="chat-body"></div>
+            </div>
+            <div class="message-box">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="message_input" placeholder="Type a message...">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="bouton-send" id="chat-message-submit"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		<!-- JavaScript -->
+		<!-- Include necessary JavaScript files -->
+		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+		<script type="module" src="js/token.js"></script>
+		<script type="module" src="js/index.js"></script>
+		<script type="module" src="js/play.js"></script>
+		<script type="module" src="js/tournament.js"></script>
+		<script type="module" src="js/index_tournament.js"></script>
+		<script type="module" src="js/tournament_game.js"></script>
+		<script type="module" src="js/settings.js"></script>
+		<script type="module" src="js/profile.js"></script>
+		<script type="module" src="js/friends_and_notifications.js"></script>
+		<script defer src="js/chat.js"></script>
+		<script defer type="module" src="js/notify.js"></script>
+		<script defer type="module" src="js/online_status.js"></script>
+		<script defer src="js/index_game.js"></script>
+</body>
+
+</html>

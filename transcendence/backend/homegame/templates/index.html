@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <canvas></canvas>
+    <div id="coinCounter">X  0</div>
+    <input type="hidden" id="platformImagePath" value="{% static 'images/index/bottomplatform.jpg' %}">
+    <input type="hidden" id="backgroundImagePath" value="{% static 'images/index/background/1.png' %}">
+    <input type="hidden" id="backgroundImage2Path" value="{% static 'images/index/background/2.png' %}">
+    <input type="hidden" id="backgroundImage3Path" value="{% static 'images/index/background/3.png' %}">
+    <input type="hidden" id="backgroundImage4Path" value="{% static 'images/index/background/4.png' %}">
+    <input type="hidden" id="backgroundImage5Path" value="{% static 'images/index/background/5.png' %}">
+    <input type="hidden" id="vigilImagePath" value="{% static 'images/index/secu.jpg' %}">
+    <input type="hidden" id="schoolImagePath" value="{% static 'images/index/asset_school.jpg' %}">
+    <input type="hidden" id="characterImageidlerightPath" value="{% static 'images/index/character/idleright2.png' %}">
+    <input type="hidden" id="characterImageidleleftPath" value="{% static 'images/index/character/idleleft2.png' %}">
+    <input type="hidden" id="characterImagejumpleftPath" value="{% static 'images/index/character/jumpleft.png' %}">
+    <input type="hidden" id="characterImagejumprightPath" value="{% static 'images/index/character/jumpright.png' %}">
+    <input type="hidden" id="characterImagerunleftPath" value="{% static 'images/index/character/runleft.png' %}">
+    <input type="hidden" id="characterImagerunrightPath" value="{% static 'images/index/character/runright.png' %}">
+    <input type="hidden" id="coinImagePath" value="{% static 'images/index/MonedaD2.png' %}">
+    <input type="hidden" id="floatingPlatformImagePath" value="{% static 'images/index/floatingPlatform.png' %}">
+    <input type="hidden" id="coinIconImagePath" value="{% static 'images/index/coinIcon.png' %}">
+    <input type="hidden" id="fontPath" value="{% static 'font/ARCADE_N.TTF' %}">
+    <input type="hidden" id="priceBubbleImagePath" value="{% static 'images/index/bubble/pricebubble.png' %}">
+    <input type="hidden" id="thumbsupBubbleImagePath" value="{% static 'images/index/bubble/thumbsupbubble.png' %}">
+
+    <script src="{% static 'js/index.js' %}" type="module"></script>
+</body>
+</html>

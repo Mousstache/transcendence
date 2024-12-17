@@ -1,0 +1,24 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#friend-list, #search-results {
+    list-style-type: none;
+    padding: 0;
+}
+
+#chat-box {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#chat-log {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}

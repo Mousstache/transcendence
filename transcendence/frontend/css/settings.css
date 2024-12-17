@@ -1,0 +1,59 @@
+/* settings.css */
+
+.popup2 {
+    display: none;
+    position: centered;
+    background: rgba(4, 72, 14, 0.8);
+    border: 1px solid #ddd;
+    z-index: 1000;
+    padding: 10px;
+    width: 350px;
+    max-height: 450px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 70px;
+    right: 20px;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+.popup2 h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.popup2 .blocked-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.popup2 .blocked-user .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.popup2 .blocked-user span {
+    flex: 1;
+    font-size: 16px;
+}
+
+.popup2 .blocked-user button {
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+#close-blocked-users-popup2 {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#block-users-error{
+	color : red;
+}

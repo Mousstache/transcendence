@@ -1,0 +1,113 @@
+* {
+	list-style: none;
+}
+
+@font-face {
+	font-family: "arcade-font";
+	src: url('../font/ARCADE_N.TTF');
+}
+
+body {
+	background: url("../images/start.png") no-repeat center center fixed;
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'arcade-font', sans-serif;
+	margin: 0;
+	/* color: blueviolet; */
+}
+.navbarre {
+	position: fixed;
+}
+
+.menu {
+	text-align: center;
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column; /* Affichage vertical des boutons */
+	justify-content: center;
+	align-items: center;
+}
+
+.menu nav {
+    display: block;
+    width: 300px;
+    margin: 10px 0; /* Ajout de marge entre les boutons */
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 20px;
+}
+
+.menu nav a {
+    display: block;
+    background: rgba(4, 72, 14, 0.8); /* Changed from rgb to rgba and added alpha */
+    font-size: 1em;
+    color: white; /* Text remains fully opaque */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+
+.menu nav.active,
+.menu nav:hover {
+	transform: scale(1.1); /* Légèrement réduit pour une rétroaction visuelle */
+	background: transparent;
+	box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+#btn-amis {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: black;
+    color: rgb(231, 202, 169);
+    border: none;
+    width: 40px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 10001;
+    border-radius: 5px;
+}
+
+.bouton-send:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Change la couleur de fond au survol */
+}
+/* .btn-success {
+	background-image: url("../images/envoyer.png");
+} */
+
+
+
+/* .popup {
+	display: none;
+	position: fixed;
+	bottom: 75px;
+	right: 20px;
+	background-color:rgb(231, 202, 169);
+	width: 200px;
+	border-radius: 5px;
+	padding: 10px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	z-index: 10000;
+} */
+
+.amis-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.amis-list-item {
+	margin-bottom: 5px;
+}
+
+.amis-list-item a {
+    text-decoration: none;
+}

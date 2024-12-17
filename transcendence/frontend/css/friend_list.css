@@ -1,0 +1,82 @@
+/* Styling for each friend section */
+.friend-section {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    /* background-color: #f9f9f9; */
+	background: rgba(4, 72, 14, 0.6); /* Couleur de fond translucide avec plus de transparence */
+    border-radius: 8px;
+}
+
+/* Heading style for each section */
+.friend-section h3 {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    margin: 0;
+    color: #333;
+}
+
+h2{
+    font-size: 1.5em;
+}
+
+/* Friend list styling */
+.friend-list {
+    list-style-type: none;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+.bandeau{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+    padding: 10px;
+    position: relative;
+}
+
+.presentation{
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    padding-bottom: 10px;
+}
+
+.data-player{
+    padding-top: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Style for each friend item */
+.friend {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    /* border-bottom: 1px solid #eee; */
+    cursor: pointer;
+}
+
+.friend:last-child {
+    border-bottom: none;
+}
+
+/* Online/offline status indicator */
+.status-indicator {
+    font-size: 0.8em;
+    margin-left: 8px;
+}
+
+/* Collapsed sections */
+/* .friend-section.collapsed ul {
+    display: none;
+} */
+
+.toggle-icon {
+    cursor: pointer;
+}
+

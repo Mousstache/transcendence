@@ -1,0 +1,280 @@
+input[type="file"] {
+	display: none;
+}
+
+body {
+	background-image: url("../images/vestiaire.png");
+	background-size: cover;
+}
+
+label {
+	font-size: 0.8rem;
+	margin-bottom: 10px;
+	display: block;
+	color: white;
+  }
+
+
+@font-face {
+	font-family: "arcade-font";
+	src: url('../font/ARCADE_N.TTF');
+}
+
+#img_profile {
+	clip-path: ellipse(33% 50%);
+}
+
+#list_maillot {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Hauteur fixe pour toutes les cases */
+}
+
+
+#list_maillot li {
+    display: none;
+    width: 100%; /* Les cases occupent toute la largeur disponible */
+    text-align: center; /* Centrer le texte */
+    padding-left: 10px;
+}
+
+#list_maillot li.active {
+	display: block;
+}
+/* 
+#selection_coa button {
+	position: absolute;
+	top: 50%;
+	width: 15%;
+	height: 100%;
+	transform: translateY(-50%);
+	z-index: 2;
+	display: block;
+    background: transparent; 
+    font-size: 0.8em;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+} */
+
+#selection_coa button {
+    position: absolute;
+    top: 50%; /* Aligner verticalement au milieu du conteneur */
+    transform: translateY(-50%); /* Centrer verticalement */
+    width: 40px; /* Largeur fixe des boutons */
+    height: 40px; /* Hauteur fixe des boutons */
+    font-size: 1.2rem; /* Taille du texte dans les boutons */
+    color: white;
+    background-color: transparent;
+    z-index: 3; /* S'assurer que les boutons restent au-dessus */
+    cursor: pointer;
+}
+
+#selection_coa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 225px;
+    margin: 0 auto;
+
+    font-size: x-small;
+    padding-top: 10px;
+    text-align: center;
+    position: relative;
+    /* display: block; */
+    background: rgba(4, 72, 14, 0.8); /* Changed from rgb to rgba and added alpha */
+    font-size: 0.8em;
+    color: white; /* Text remains fully opaque */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+#prev-btn {
+    left: -18px; /* Décaler le bouton à gauche */
+}
+
+#next-btn {
+    right: 0px; /* Décaler le bouton à droite */
+}
+
+
+/* #prev-btn {
+	left: 0;
+}
+
+#next-btn {
+	right: 0;
+} */
+
+.custom-file-upload,
+.statistique,
+.auth-2FA,
+.data_user,
+.data_form,
+.history,
+.match_1,
+.match_2,
+.match_3 {
+	margin: 20px;
+	padding: 10px;
+	display: block;
+    background: rgba(4, 72, 14, 0.8); /* Changed from rgb to rgba and added alpha */
+    font-size: 0.6em;
+    color: white; /* Text remains fully opaque */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+.statistique,
+.auth-2FA,
+.data_user,
+.data_form {
+	margin-right: 50px;
+	display: block;
+    background: rgba(4, 72, 14, 0.8); /* Changed from rgb to rgba and added alpha */
+    font-size: 0.8em;
+    color: white; /* Text remains fully opaque */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+.custom-file-upload:before,
+.custom-file-upload:after,
+.data_user:before,
+.data_user:after,
+.data_form:before,
+.data_form:after,
+.statistique:before,
+.statistique:after,
+.auth-2FA:before,
+.auth-2FA:after,
+.history:before,
+.history:after,
+.match_1:before,
+.match_1:after,
+.match_2:before,
+.match_2:after,
+.match_3:before,
+.match_3:after {
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	display: block;
+    background: rgba(4, 72, 14, 0.8); /* Changed from rgb to rgba and added alpha */
+    font-size: 0.6em;
+    color: white; /* Text remains fully opaque */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+
+	50% {
+		background-position: 400% 0;
+	}
+
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.containers {
+    position: relative;
+    width: 140px; /* Ajusté pour correspondre à la largeur des maillots */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    margin-bottom: 20px;
+}
+
+.image {
+    clip-path: ellipse(50% 50%);
+    opacity: 1;
+    width: 100px; /* Ajustez cette taille selon vos besoins */
+    height: 100px;
+    transition: .5s ease;
+    position: relative;
+    z-index: 3; /* S'assurer que l'image de profil reste au-dessus */
+	margin-left: 93px;
+}
+
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.containers:hover .middle {
+    opacity: 1;
+}
+
+.replace_picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+#maillot {
+    width: 180px; /* Assurez-vous que cela correspond à la largeur réelle des images de maillot */
+    height: 500px; /* Dimension exacte des maillots */
+    transform: scale(1); /* Supprimez le redimensionnement si vous voulez que le maillot garde ses proportions */
+    z-index: 2;
+    margin-top: -55px; /* Ajuste pour que le maillot soit juste sous la tête */
+}
+
+.col-4 {
+    width: 32%;
+    margin: 0 5px;
+}
+
+/* Style pour la colonne contenant l'historique */
+.col-4:last-child .row.justify-content-center {
+    display: flex;
+    flex-direction: column; /* Affiche les éléments en colonne */
+}
+
+.history,
+.match_1,
+.match_2,
+.match_3 {
+    width: calc(100% - 40px); /* Prend toute la largeur moins les marges */
+    margin: 20px;
+}
+
+.row.justify-content-center {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.col-4 {
+    width: 33.333%;
+    min-width: 33.333%;
+    flex: 0 0 auto;
+}

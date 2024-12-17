@@ -1,0 +1,30 @@
+* {
+	list-style: none;
+	text-decoration: none;
+}
+
+.row {
+	margin: 0px;
+	padding: 0px;
+	font-size: normal;
+}
+
+.col-sm {
+	width: 50%;
+}
+
+#room-name-input, #max_players {
+	width: 50%;
+}
+
+#validate-button{
+	text-decoration: none;
+	border-radius: 5px;
+    padding: 10px 20px;
+	background: black;
+	color: white;
+}
+
+#validate-button:hover , #solo-mode:hover{
+    background-color: lightgreen;
+}

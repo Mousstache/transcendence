@@ -1,0 +1,252 @@
+@font-face {
+    font-family: "arcade-font";
+    src: url('../font/ARCADE_N.TTF');
+}
+
+* {
+    font-family: "arcade-font", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../images/game_background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-style: normal;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.canvas-container {
+    transform-style: preserve-3d;
+    transform: rotateX(45deg); 
+}
+
+#canvas {
+    width: 100%;
+    height: auto;
+    max-width: 1200px; /* Limite la largeur maximale */
+    border: 2px solid white;
+}
+
+#timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+}
+
+h1 {
+    font-size: 3em;
+    color: white;
+}
+
+h6 {
+    font-size: 1.2em;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    perspective: 1210px; 
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: lightgreen;
+}
+
+.wesh {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .wesh {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 0.8em;
+        padding: 5px 10px;
+    }
+
+    /* Réduction de la taille du canvas sur un écran scindé */
+    .canvas-container {
+        width: 65%; /* Réduit le conteneur à 65% */
+    }
+
+    #canvas {
+        max-width: 700px; /* Limite la largeur du canvas sur écran scindé */
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Réduction de la largeur du canvas sur les petits écrans */
+    .canvas-container {
+        width: 75%; /* Réduit la largeur du conteneur à 75% */
+    }
+
+    #canvas {
+        max-width: 900px; /* Limite la largeur du canvas sur écran scindé */
+    }
+}
+
+#solo-mode {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    background : rgba(7, 72, 14, 0.8);
+	border: 3px solid rgb(255, 255, 255);
+	width: 60%;
+	border-radius: 10px;
+    color: white; /* Couleur du texte */
+    text-decoration: none; /* Supprime la décoration de lien (soulignement) */
+    cursor: pointer; /* Change le curseur pour pointer */
+    transition: background-color 0.3s ease; /* Animation douce au survol */
+}
+
+#solo-mode:hover {
+    background-color: lightgreen; /* Changement de couleur au survol */
+}
+
+body.jeu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('../images/game_background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "arcade-font", sans-serif;
+    color: white;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.scoreboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+
+    margin: 20px;
+	padding: 10px;
+	display: block;
+    background: rgba(4, 72, 14, 0.8); /* Changed from rgb to rgba and added alpha */
+    font-size: 0.8em;
+    color: white; /* Text remains fully opaque */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+.sousdiv{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.team {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0 15px;
+    text-shadow: 2px 2px 5px black;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.logo img {
+    width: 40px;
+    height: auto;
+}
+
+.score {
+    font-size: 2.5rem;
+    padding: 0 15px;
+    font-weight: bold;
+    color: black;
+    background: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    text-shadow: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.tild{
+    font-size: 2.5rem;
+    padding: 0 15px;
+    font-weight: bold;
+    color: black;
+}
+
+/* Style pour les champs d'entrée */
+input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid white; /* Bordure blanche pour plus de visibilité */
+    border-radius: 5px; /* Bords arrondis */
+    background-color: white; /* Fond semi-transparent pour contraste */
+    color: black; /* Texte blanc */
+    width: 100%; /* Ajuste la largeur pour correspondre aux colonnes */
+    margin-bottom: 10px; /* Espacement entre les champs */
+    box-sizing: border-box; /* Pour que le padding soit inclus dans la largeur totale */
+}
+
+/* Style pour le focus (quand l'utilisateur clique sur le champ) */
+input[type="text"]:focus {
+    outline: none; /* Retire l'effet de focus par défaut */
+    border-color: lightgreen; /* Change la couleur de bordure au focus */
+    background-color: whitesmoke; /* Fond légèrement plus opaque au focus */
+    transition: background-color 0.3s, border-color 0.3s; /* Animation douce au focus */
+}

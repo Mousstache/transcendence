@@ -1,0 +1,213 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation du Code</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" href="../../../frontend/css/validate_code.css" /> -->
+
+    <!-- EmailJS scripts are commented out since email sending is disabled -->
+    <!-- <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script>
+      (function () {
+        emailjs.init({
+          publicKey: "{{ public_key }}",
+        });
+      })();
+    </script> -->
+
+    <script>
+      window.onload = function () {
+        const emailSendingEnabled = false; // Set to true to re-enable email sending
+
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) {
+            let cookieValue = parts.pop().split(";").shift();
+            if (cookieValue.startsWith('"') && cookieValue.endsWith('"')) {
+              cookieValue = cookieValue.slice(1, -1);
+            }
+            return cookieValue;
+          }
+        }
+
+        const templateParams = {
+          message: "{{ validation_code }}",
+          email: getCookie("email"),
+        };
+
+        if (emailSendingEnabled) {
+          emailjs
+            .send("{{ service_id }}", "{{ template_id }}", templateParams)
+            .then(
+              (response) => {
+                console.log("SUCCESS!", response.status, response.text);
+              },
+              (error) => {
+                console.log("FAILED...", error);
+              }
+            );
+        } else {
+          console.log("Email sending is currently disabled.");
+        }
+      };
+    </script>
+    <style>
+      @font-face {
+        font-family: "arcade-font";
+        src: url("{% static 'fonts/arcade.ttf' %}") format("truetype");
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "arcade-font", Arial, sans-serif;
+        background: url("../../../frontend/images/valid.webp") no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        /* color: #fff; */
+      }
+
+      .container {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 40px;
+        border: 5px solid #ffcc00;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: #fcb045;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px #000;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      label {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: block;
+        color: #ffcc00;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 1rem;
+        border: 2px solid #ffcc00;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      input[type="text"]::placeholder {
+        color: #ffcc00;
+        opacity: 0.7;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2rem;
+        background-color: #4CAF50;
+        color: white;
+        border: 3px solid #ffcc00;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      button:hover {
+        background-color: #45a049;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .form-group i {
+        color: #ffcc00;
+        margin-right: 5px;
+      }
+
+      .footer {
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      .footer a {
+        color: #ffcc00;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <script>
+        console.log("Le code de validation est : {{ validation_code }}");
+      </script>
+      <h1>Validez votre Code</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="validation_code">
+            <i class="fas fa-key"></i> Entrez le code de validation :
+          </label>
+          <input
+            type="text"
+            id="validation_code"
+            name="validation_code"
+            placeholder="Code à 6 chiffres"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-check-circle"></i> Valider
+        </button>
+      </form>
+      {% if error %}
+      <p style="color: red">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

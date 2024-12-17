@@ -1,0 +1,117 @@
+@font-face {
+	font-family: "arcade-font";
+	src: url('../font/ARCADE_N.TTF');
+}
+
+  * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+
+  body {
+	font-family: "arcade-font", Arial, sans-serif;
+	background: url("../images/valid.webp") no-repeat center center fixed;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	/* color: #fff; */
+  }
+
+  .container_valid {
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 40px;
+	border: 5px solid #ffcc00;
+	border-radius: 20px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	width: 100%;
+	max-width: 400px;
+	animation: fadeIn 1s ease-in-out;
+  }
+
+  h1 {
+	font-size: 2.5rem;
+	color: #fcb045;
+	margin-bottom: 20px;
+	text-shadow: 2px 2px 4px #000;
+  }
+
+  .form-group_valid {
+	margin-bottom: 20px;
+	text-align: left;
+  }
+
+  .label-validate {
+	font-size: 1.1rem;
+	margin-bottom: 10px;
+	display: block;
+	color: #ffcc00;
+  }
+
+  .input-validate[type="text"] {
+	width: 100%;
+	padding: 15px;
+	font-size: 1rem;
+	border: 2px solid #ffcc00;
+	border-radius: 5px;
+	/* background-color: rgba(255, 255, 255, 0.1);
+	color: #fff; */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+  }
+
+  .input-validate[type="text"]::placeholder {
+	/* color: #ffcc00; */
+	color: black;
+	opacity: 0.7;
+  }
+
+  .button-validate {
+	width: 100%;
+	padding: 15px;
+	font-size: 1.2rem;
+	background-color: #4CAF50;
+	color: white;
+	border: 3px solid #ffcc00;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  button:hover {
+	background-color: #45a049;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .form-group i {
+	color: #ffcc00;
+	margin-right: 5px;
+  }
+
+  .footer {
+	margin-top: 20px;
+	font-size: 0.9rem;
+  }
+
+  .footer a {
+	color: #ffcc00;
+	text-decoration: none;
+  }
+
+  .footer a:hover {
+	text-decoration: underline;
+  }
+
+  @keyframes fadeIn {
+	from {
+	  opacity: 0;
+	  transform: scale(0.9);
+	}
+	to {
+	  opacity: 1;
+	  transform: scale(1);
+	}
+  }

@@ -1,0 +1,150 @@
+body {
+    background: url('../images/joueur_stade.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    font-family: "arcade-font", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: hidden; 
+}
+
+h1{
+    color: #f8f8f8; /* Texte clair pour une bonne visibilité */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Ajout d'une ombre pour améliorer la lisibilité */
+    background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+}
+
+.p-play {
+	background: rgba(7, 72, 14, 0.8);
+	padding: 20px;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 1.2em;
+	margin-top: 20px;
+	width: 100%;
+	max-width: 500px;
+}
+
+#room-name-input, #max_players {
+    width: 90%;
+    max-width: 500px;
+    padding: 12px;
+    font-size: 1.2em;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.3); /* Plus transparent pour mieux s'intégrer au fond */
+    color: black;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.button-id {
+	border: 3px solid rgb(255, 255, 255);
+	width: 90%;
+    padding: 15px 30px;
+    font-size: 1em;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-nb-player, #power-up, #submit-tournament {
+	width: 90%;
+    padding: 15px 30px;
+    font-size: 1em;
+    margin: 10px;
+	border: 3px solid rgb(255, 255, 255);
+    background : rgba(7, 72, 14, 0.8);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+button:hover {
+    background-color: #4CAF50;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ajout d'un léger effet de survol */
+}
+
+button:disabled {
+    background-color: #666;
+    color: #ccc;
+}
+
+#power-up.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#tournament_list {
+    background : rgba(7, 72, 14, 0.8);
+	border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    font-size: 1.2em;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 450px;
+    max-height: 500px;
+    overflow-y: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#tournament_list::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    button {
+        font-size: 0.8em;
+        padding: 10px 20px;
+    }
+}
+
+#button-max-player-group {
+	display: flex;
+	justify-content: space-around;
+}
+
+.button-id.selected {
+	background-color: #4CAF50;
+}
+
+.button-nb-player.selected {
+	background-color: #4CAF50;
+}
+
+#settings-error {
+	all: unset;
+	color: red;
+	font-size: smaller;
+	background-color: rgba;
+}
