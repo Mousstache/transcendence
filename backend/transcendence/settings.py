@@ -16,7 +16,7 @@ DEBUG = True
 HOST_HOSTNAME = config('HOST_HOSTNAME', default='localhost')
 
 # Allowed hosts
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', HOST_HOSTNAME]
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', HOST_HOSTNAME, 'vercel.app']
 
 # Installed applications
 INSTALLED_APPS = [
@@ -53,6 +53,7 @@ SIMPLE_JWT = {
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 	'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -201,4 +202,7 @@ LOGGING = {
         },
     },
 }
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
