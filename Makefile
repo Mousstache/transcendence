@@ -1,7 +1,7 @@
 export HOST_HOSTNAME=$(shell hostname)
 
 all :
-	docker compose -f ./docker-compose.yml build
+	docker compose -f ./docker-compose.yml 
 	docker compose -f ./docker-compose.yml up
 
 clean :
